@@ -15,7 +15,12 @@ namespace Business.Contants
         public static string UserAdded = "Kullanıcı başarıyla eklendi.";
 
         public static string UserNotFound = "Kullanıcı bulunamadı !!";
-        public static string UserFound = "Kullanıcı halihazırda mevcut ";
 
+        public static string PasswordNotFound = "Şifre bulunamadı";
+        public static string SuccessLogin = "Başarıyla giriş yaptınız";
+        public static string ExistingUser ="Kullanıcı halihazırda mevcut ";
+        public static string NotExists = "Kullanıcı bulunamadı";
+        public static string UserRegistered = "Kullanıcı başaryıla kayıt oldu";
+        public static string AccessTokenCreated = "Access Token başarıyla oluşturuldu";
     }
 }
