@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace WebAPI.Controllers
         private IAuthService _authService;
         public AuthController(IAuthService authService)
         {
-            _authService = authService;
+            authService = _authService;
         }
         [HttpPost("Login")]
         public ActionResult Login(UserforLoginDTO userforLoginDTO)
@@ -46,5 +47,8 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,7 @@ namespace WebAPI.Controllers
             _storservice = storservice;
         }
         [HttpGet("getall")]
+        [Authorize]
         public IActionResult GetList()
         {
             var result = _storservice.GetList();
