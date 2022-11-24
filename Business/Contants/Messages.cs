@@ -15,6 +15,7 @@ namespace Business.Contants
         public static string UserAdded = "Kullanıcı başarıyla eklendi.";
 
         public static string UserNotFound = "Kullanıcı bulunamadı !!";
+        public static string UserFound = "Kullanıcı halihazırda mevcut ";
 
     }
 }
