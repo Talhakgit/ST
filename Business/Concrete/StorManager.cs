@@ -22,6 +22,8 @@ namespace Business.Concrete
         }
         public IResult Add(Stor stor)
         {
+           
+
             _storDal.Add(stor);
             return new SuccessResult(Messages.ProductAdded);
         }
