@@ -1,12 +1,16 @@
 ﻿using Business.Abstract;
 using Business.Contants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +18,7 @@ namespace Business.Concrete
 {
     public class StorManager : IStorService
     {
+        StorValidator storValidator= new StorValidator();
         private IStorDal _storDal;
         
         public StorManager (IStorDal storDal)
@@ -22,7 +27,7 @@ namespace Business.Concrete
         }
         public IResult Add(Stor stor)
         {
-           
+           ValidationTool.Validate(new StorValidator(),stor);
 
             _storDal.Add(stor);
             return new SuccessResult(Messages.ProductAdded);
