@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Contants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
@@ -45,17 +47,17 @@ namespace Business.Concrete
 
             return new SuccessDataResult<Stor>(_storDal.Get(p => p.stor_id == stor_id));
         }
-
+        [CacheAspect(duration: 1)]
         public IDataResults<List<Stor>> GetList()
         {
             return new SuccessDataResult<List<Stor>>(_storDal.GetList().ToList()); 
         }
-
+        [CacheAspect(duration :1)]
         public IDataResults<List<Stor>> GetListByAdress(string stor_address)
         {
             return new SuccessDataResult<List<Stor>>(_storDal.GetList(p => p.stor_address == stor_address).ToList());
         }
-
+        [TransactionScopeAspect]
         public IResult TransactionalOperation(Stor stor)
         {
             _storDal.update(stor);

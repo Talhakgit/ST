@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Aspects\Validation\" />
+    <Folder Include="Aspects\Autofac\Validation\" />
   </ItemGroup>
 
 </Project>

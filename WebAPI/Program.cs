@@ -4,6 +4,8 @@ using Autofac.Extensions.DependencyInjection;
 
 
 using Business.DependencyResolvers.Autofac;
+using Core.DependencyResolvers;
+using Core.Extensions;
 using Core.Utilities.Security.Encryption;
 
 using Core.Utilities.Security.Jwt;
@@ -75,42 +77,47 @@ object value = builder.Services.AddAuthentication(JwtBearerDefaults.Authenticati
 
 
     };
+});
+
+    builder.Services.AddDependencyResolvers(new Core.Utilities.IoC.ICoreModule[]
+      {
+        new CoreModule()
+      });
+
+
+
+    var app = builder.Build();
+  
 
 
 
 
-var app = builder.Build();
+    // Configure the HTTP request pipeline.
+
+    if (app.Environment.IsDevelopment())
+
+    {
+
+        app.UseSwagger();
+
+        app.UseSwaggerUI();
+
+    }
 
 
 
+    app.UseCors("AllowOrigin");
 
-
-// Configure the HTTP request pipeline.
-
-if (app.Environment.IsDevelopment())
-
-{
-
-    app.UseSwagger();
-
-    app.UseSwaggerUI();
-
-}
+    app.UseHttpsRedirection();
 
 
 
-app.UseCors("AllowOrigin");
+    app.UseAuthorization();
 
-app.UseHttpsRedirection();
+    app.UseAuthentication();
 
-
-
-app.UseAuthorization();
-
-app.UseAuthentication();
-
-app.MapControllers();
+    app.MapControllers();
 
 
 
-app.Run();
+    app.Run();
