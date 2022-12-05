@@ -1,4 +1,4 @@
-﻿using Entities.Concrete;
+﻿   using Entities.Concrete;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
@@ -16,8 +16,6 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(s => s.stor_name).NotEmpty();
             RuleFor(s => s.stor_name).Length(2, 30);
             RuleFor(s => s.stor_address).NotEmpty();
-
-
         }
 
     }

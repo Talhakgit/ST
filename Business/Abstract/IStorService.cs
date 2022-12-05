@@ -18,6 +18,7 @@ namespace Business.Abstract
         IResult Update(Stor stor);
         IResult Delete(Stor stor);
 
+        IResult TransactionalOperation(Stor stor);
 
 
     }

@@ -26,7 +26,7 @@ namespace Business.Concrete
         {
             _storDal = storDal;
         }
-        [ValidationAspect(typeof(StorValidator))]
+        [ValidationAspect(typeof(StorValidator),Priority = 1)]
         public IResult Add(Stor stor)
         {
             _storDal.Add(stor);
@@ -54,6 +54,13 @@ namespace Business.Concrete
         public IDataResults<List<Stor>> GetListByAdress(string stor_address)
         {
             return new SuccessDataResult<List<Stor>>(_storDal.GetList(p => p.stor_address == stor_address).ToList());
+        }
+
+        public IResult TransactionalOperation(Stor stor)
+        {
+            _storDal.update(stor);
+            //_storDal.Add(stor);
+            return new SuccessResult(Messages.ProductUpdated);
         }
 
         public IResult Update(Stor stor)

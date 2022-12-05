@@ -76,6 +76,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpPost("transaction")]
+        public IActionResult TransactionTest(Stor stor)
+        {
+            var result = _storservice.TransactionalOperation(stor);
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            return BadRequest(result.Message);
+        }
 
     }
 }
