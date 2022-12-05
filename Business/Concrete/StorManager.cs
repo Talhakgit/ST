@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Contants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -25,10 +26,9 @@ namespace Business.Concrete
         {
             _storDal = storDal;
         }
+        [ValidationAspect(typeof(StorValidator))]
         public IResult Add(Stor stor)
         {
-           ValidationTool.Validate(new StorValidator(),stor);
-
             _storDal.Add(stor);
             return new SuccessResult(Messages.ProductAdded);
         }
