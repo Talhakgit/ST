@@ -7,7 +7,7 @@ using Business.DependencyResolvers.Autofac;
 using Core.Utilities.Security.Encryption;
 
 using Core.Utilities.Security.Jwt;
-
+using FluentAssertions.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 
@@ -76,7 +76,6 @@ object value = builder.Services.AddAuthentication(JwtBearerDefaults.Authenticati
 
     };
 
-});
 
 
 
