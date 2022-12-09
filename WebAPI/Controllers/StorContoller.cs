@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
             _storservice = storservice;
         }
         [HttpGet("getall")]
-        [Authorize]
+        //[Authorize]
         public IActionResult GetList()
         {
             var result = _storservice.GetList();

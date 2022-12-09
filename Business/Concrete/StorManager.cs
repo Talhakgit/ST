@@ -21,14 +21,15 @@ namespace Business.Concrete
 {
     public class StorManager : IStorService
     {
-        StorValidator storValidator= new StorValidator();
+        StorValidator storValidator = new StorValidator();
         private IStorDal _storDal;
-        
-        public StorManager (IStorDal storDal)
+
+        public StorManager(IStorDal storDal)
         {
             _storDal = storDal;
         }
-        [ValidationAspect(typeof(StorValidator),Priority = 1)]
+        //[ValidationAspect(typeof(StorValidator), Priority = 1)]
+        //[CacheRemoveAspect("IStorService.Get")]
         public IResult Add(Stor stor)
         {
             _storDal.Add(stor);
@@ -50,12 +51,12 @@ namespace Business.Concrete
         [CacheAspect(duration: 1)]
         public IDataResults<List<Stor>> GetList()
         {
-            return new SuccessDataResult<List<Stor>>(_storDal.GetList().ToList()); 
+            return new SuccessDataResult<List<Stor>>(_storDal.GetList().ToList());
         }
-        [CacheAspect(duration :1)]
-        public IDataResults<List<Stor>> GetListByAdress(string stor_address)
+        [CacheAspect(duration: 1)]
+        public IDataResults<List<Stor>> GetListByAdress(string state)
         {
-            return new SuccessDataResult<List<Stor>>(_storDal.GetList(p => p.stor_address == stor_address).ToList());
+            return new SuccessDataResult<List<Stor>>(_storDal.GetList(p => p.state == state).ToList());
         }
         [TransactionScopeAspect]
         public IResult TransactionalOperation(Stor stor)
@@ -67,7 +68,7 @@ namespace Business.Concrete
 
         public IResult Update(Stor stor)
         {
-           _storDal.update(stor);
+            _storDal.update(stor);
             return new SuccessResult(Messages.ProductUpdated);
         }
     }

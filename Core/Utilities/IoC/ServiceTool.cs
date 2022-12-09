@@ -15,5 +15,6 @@ namespace Core.Utilities.IoC
             serviceProvider= services.BuildServiceProvider();
             return services; 
         }
+
     }
 }

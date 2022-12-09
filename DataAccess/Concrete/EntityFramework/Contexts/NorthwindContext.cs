@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Contexts
 {
-    public class NorthwindContext:DbContext
+    public class NorthwindContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString: @"Server=coinodb-dev.cjq6i1xxy6zz.eu-central-1.rds.amazonaws.com;Database=pubs;Uid=sa;Password=DtzsCI3HF9n4WIX7O3dj6SSdC43PdpwpMtcaXtDlj8TJy3KDSJ;TrustServerCertificate=True"
-);      
-                
+);
+
         }
         public DbSet<Stor> stores { get; set; }
         public DbSet<Authors> authors { get; set; }

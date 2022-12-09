@@ -20,7 +20,7 @@ namespace Core.Aspects.Autofac.Transaction
                     invocation.Proceed();
                     transactionScope.Complete();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     transactionScope.Dispose();
                     throw;

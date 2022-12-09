@@ -15,8 +15,10 @@ namespace Business.Concrete
     public class AuthorsManager : IAuthorService
     {
         private IAuthorsDal _authorsDal;
+
         public AuthorsManager(IAuthorsDal authorsDal)
         {
+            
              _authorsDal = authorsDal;
         }
         public IResult Add(Authors authors)
@@ -44,6 +46,8 @@ namespace Business.Concrete
 
         public IDataResults<List<Authors>>GetList()
         {
+           
+
             return new SuccessDataResult<List<Authors>>(_authorsDal.GetList().ToList());
         }
 

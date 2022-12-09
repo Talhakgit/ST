@@ -13,7 +13,7 @@ namespace Business.Abstract
     {
         IDataResults<Stor> GetById(int storid);
         IDataResults<List<Stor>> GetList();
-        IDataResults<List<Stor>> GetListByAdress(string stor_adress);
+        IDataResults<List<Stor>> GetListByAdress(string state);
         IResult Add(Stor stor);
         IResult Update(Stor stor);
         IResult Delete(Stor stor);
